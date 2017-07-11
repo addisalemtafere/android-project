@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">Tgurbanland</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string-array name="city_item">
+        <item>Mekele</item>
+        <item>Wikro</item>
+        <item>Shire</item>
+        <item>Sheraro</item>
+        <item>Axum</item>
+        <item>Alamata</item>
+        <item>Humera</item>
+        <item>Maychew</item>
+        <item>Adigrat</item>
+        <item>Adwa</item>
+    </string-array>
+<string-array name="bid_item">
+    <item>list of bid</item>
+    <item>Notice</item>
+    <item>Site Plan</item>
+    <item>Rejected Candidates</item>
+    <item>Winners</item>
+    <item>Proclamation</item>
+</string-array>
+
+</resources>
