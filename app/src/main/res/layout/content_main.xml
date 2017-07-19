@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:id="@+id/ConstraintLayout"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.tgurbanland.tgurbanland.MainActivity"
@@ -11,14 +12,14 @@
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:orientation="vertical"
-        android:layout_margin="10dp">
+        android:layout_margin="10dp"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:padding="10dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -27,6 +28,7 @@
 
             <Spinner
                 android:id="@+id/spinner1"
+                android:backgroundTint="#ffaa00"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0" />
@@ -35,9 +37,9 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:padding="10dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -46,6 +48,7 @@
 
             <Spinner
                 android:id="@+id/spinner2"
+                android:backgroundTint="#ffaa00"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="0" />
@@ -54,9 +57,9 @@
 
         <LinearLayout
             android:layout_width="fill_parent"
-            android:padding="10dp"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:padding="10dp">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -65,6 +68,7 @@
 
             <Spinner
                 android:id="@+id/spinner3"
+                android:backgroundTint="#ffaa00"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -73,7 +77,11 @@
             android:id="@+id/download"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Download Pdf" />
+            android:layout_gravity="center"
+            android:text="Download PDF"
+            android:backgroundTint="#ffaa00"
+            android:textColor="@android:color/white"
+        />
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

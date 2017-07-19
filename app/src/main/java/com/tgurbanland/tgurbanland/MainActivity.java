@@ -1,5 +1,6 @@
 package com.tgurbanland.tgurbanland;
 
+import android.Manifest;
 import android.app.DownloadManager;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -12,8 +13,10 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
+import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.content.ContextCompat;
 import android.text.AndroidCharacter;
@@ -62,6 +65,7 @@ public class MainActivity extends AppCompatActivity
 
     Spinner city, bidType, bidId;
     Button btnDownload;
+    ConstraintLayout constraintLayout;
 
     private static final String TAG = "MainActivity";
 
@@ -97,6 +101,8 @@ public class MainActivity extends AppCompatActivity
         bidType = (Spinner) findViewById(R.id.spinner2);
         bidId = (Spinner) findViewById(R.id.spinner3);
         btnDownload = (Button) findViewById(R.id.download);
+        constraintLayout = (ConstraintLayout) findViewById(R.id.ConstraintLayout);
+
 
         List<String> cityList = new ArrayList<>();
         cityList.add("Mekele");
@@ -111,12 +117,9 @@ public class MainActivity extends AppCompatActivity
         cityList.add("Adwa");
 
         List<String> bidTypeList = new ArrayList<>();
-        bidTypeList.add("list of bid");
-        bidTypeList.add("Notice");
-        bidTypeList.add("Site location");
+        bidTypeList.add("Detail");
         bidTypeList.add("Rejected");
-        bidTypeList.add("Winners");
-        bidTypeList.add("Proclamation");
+        bidTypeList.add("Winner");
 
 
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, cityList);
@@ -166,8 +169,8 @@ public class MainActivity extends AppCompatActivity
                 JSONObject postDataParams = new JSONObject();
 
 
-                postDataParams.put("name", "abhay");
-                postDataParams.put("email", "abhay@gmail.com");
+                postDataParams.put("name", "addisalem");
+                postDataParams.put("email", "add@gmail.com");
 
                 Log.e("params", postDataParams.toString());
 
@@ -287,7 +290,11 @@ public class MainActivity extends AppCompatActivity
                                 "\nSpinner 1 : " + String.valueOf(city.getSelectedItem()) +
                                 "\nSpinner 2 : " + String.valueOf(bidType.getSelectedItem()),
                         Toast.LENGTH_SHORT).show();
-                startDownloading("http://www.tgurbanland.com/lease/uploads/48050-59.pdf");
+                String file = String.valueOf(city.getSelectedItem()).charAt(0) + "-" + String.valueOf(bidType.getSelectedItem())
+                        + "-" + String.valueOf(bidId.getSelectedItem() + ".pdf");
+                Toast.makeText(MainActivity.this, file, Toast.LENGTH_LONG).show();
+                String file2 = "http://www.tgurbanland.com/lease/uploads/" + file;
+                startDownloading(file2, file);
             }
 
         });
@@ -296,12 +303,13 @@ public class MainActivity extends AppCompatActivity
 
     private long mDownloadEnqueueId;
 
-    public void startDownloading(String url) {
+    public void startDownloading(String url, String name) {
 //        if (!PermissionUtil.isPermissionGranted(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
 //            PermissionUtil.requestPermission(this, PermissionUtil.REQUEST_PERMISSION_WRITE_EXTERNAL_STORAGE, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, getString(R.string.permission_rationale_write_external_storage), false);
 //            Log.e(TAG, "startDownloading: " + ">>>>>> 111111");
 //            return;
 //        }
+//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 0);
         Log.e(TAG, "startDownloading: " + ">>>>>> 222222");
 
 //        mLoadToast.show();
@@ -313,8 +321,8 @@ public class MainActivity extends AppCompatActivity
         request.setAllowedNetworkTypes(DownloadManager.Request.NETWORK_WIFI | DownloadManager.Request.NETWORK_MOBILE)
                 //.setAllowedOverRoaming(false)
                 .setTitle("Downloading..")
-                .setDescription("Printable Antibiogram Data")
-                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, "LatestAntibiogram.pdf");
+                .setDescription("Bid Document")
+                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, name);
         mDownloadEnqueueId = mDownloadManager.enqueue(request);
     }
 
@@ -334,15 +342,15 @@ public class MainActivity extends AppCompatActivity
                     if (DownloadManager.STATUS_SUCCESSFUL == c.getInt(columnIndex)) {
 
                         String notificationTitle = "pdf";
-                        String notificationText = "file_downloaded";
+                        String notificationText = "File Successful  Downloaded";
                         showDownloadNotification(notificationTitle, notificationText);
-//                        Snackbar.mak(mMainContent, notificationText, CustomView.SnackBarStyle.SUCCESS).setAction(getString(R.string.open), new View.OnClickListener() {
-//                            @Override
-//                            public void onClick(View v) {
-//                                Intent i = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
-//                                startActivity(i);
-//                            }
-//                        }).show();
+                        Snackbar.make(constraintLayout, notificationText, Snackbar.LENGTH_LONG).setAction(getString(R.string.open), new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Intent i = new Intent(DownloadManager.ACTION_VIEW_DOWNLOADS);
+                                startActivity(i);
+                            }
+                        }).show();
                     }
                 }
             }

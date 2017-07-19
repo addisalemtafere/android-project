@@ -3,7 +3,7 @@
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
+    <string name="open">Open</string>
     <string name="action_settings">Settings</string>
     <string-array name="city_item">
         <item>Mekele</item>
@@ -17,13 +17,13 @@
         <item>Adigrat</item>
         <item>Adwa</item>
     </string-array>
-<string-array name="bid_item">
-    <item>list of bid</item>
-    <item>Notice</item>
-    <item>Site Plan</item>
-    <item>Rejected Candidates</item>
-    <item>Winners</item>
-    <item>Proclamation</item>
-</string-array>
+    <string-array name="bid_item">
+        <item>list of bid</item>
+        <item>Notice</item>
+        <item>Site Plan</item>
+        <item>Rejected Candidates</item>
+        <item>Winners</item>
+        <item>Proclamation</item>
+    </string-array>
 
 </resources>
